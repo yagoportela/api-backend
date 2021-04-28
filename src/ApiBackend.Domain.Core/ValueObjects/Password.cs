@@ -5,7 +5,12 @@ namespace ApiBackend.Domain.Core.ValueObjects
 {
     public class Password
     {
-        public readonly string value;
+        public readonly string passwordValue;
+
+        private Password(string password)
+        {
+            passwordValue = password;
+        }
 
         private Password(string password, string key)
         {
@@ -15,14 +20,19 @@ namespace ApiBackend.Domain.Core.ValueObjects
             if(string.IsNullOrEmpty(key))
                     throw new NullReferenceException(key);
                     
-            value = Hash.Encrypt(password, key);
+            passwordValue = Hash.Encrypt(password, key);
         }
 
-        public static implicit operator string(Password password) => password.value;
+        public static Password Parse(string password)
+        {
+            return new Password(password);
+        }   
+
+        public static implicit operator string(Password password) => password.passwordValue;
         public static implicit operator Password(PasswordCripty value) => new Password(value.Password, value.Key);
 
-        public override string ToString() => $"{value}";
-        public string ToString(string key) => Hash.Decrypt(value, key);        
+        public override string ToString() => $"{passwordValue}";
+        public string ToString(string key) => Hash.Decrypt(passwordValue, key);        
     }
 
     public class PasswordCripty

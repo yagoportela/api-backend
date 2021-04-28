@@ -64,7 +64,8 @@ namespace ApiBackend.Services.Auth0
 
                 return response.user_id;
 
-            }  catch (FlurlHttpException ex)
+            }  
+            catch (FlurlHttpException ex)
             {
                 _logger.Error("Exception {@ex}", ex);
                 var error = await ex.GetResponseJsonAsync();
@@ -80,12 +81,6 @@ namespace ApiBackend.Services.Auth0
                     throw new ConflictException(error.message);
 
                 throw new Exception(fault.message, ex);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error("Exception {@ex}", ex);
-
-                throw ex;
             }
         }
     }

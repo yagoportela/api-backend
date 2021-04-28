@@ -22,10 +22,10 @@ namespace ApiBackend.Infra.CrossCutting.IoC
     {
         public static void Dependences(IServiceCollection builder)
         {
+            AddDependencyDomainCommands (builder);
             AddDependencyDataBase(builder);
             AddDependencyApplication (builder);
             AddDependencyService (builder);
-            AddDependencyDomainCommands (builder);
             ConfigureAutoMapper (builder);
             ConfigurationEnvironment (builder); 
         }
@@ -58,7 +58,7 @@ namespace ApiBackend.Infra.CrossCutting.IoC
             builder.AddSingleton<IApplicationCustomersHandler, ApplicationCustomerServices>(); 
         }
         private static void AddDependencyDomainCommands (IServiceCollection builder) { 
-            builder.AddScoped<IRequestHandler<ClientRegisterCommand, bool>, RegisterNewCustormerHandler>(); 
+            builder.AddTransient<IRequestHandler<ClientRegisterCommand, bool>, RegisterNewCustormerHandler>(); 
         }
 
         private static void ConfigurationEnvironment (IServiceCollection builder) {   

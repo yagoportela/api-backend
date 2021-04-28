@@ -4,20 +4,24 @@ namespace ApiBackend.Domain.Core.ValueObjects
 {
     public class UserIdAuth
     {        
-        public readonly string value;
+        public readonly string UserId;
 
         private UserIdAuth(string userId)
         {
             if(string.IsNullOrEmpty(userId))
                     throw new NullReferenceException(userId);
                     
-            value = userId;
+            UserId = userId;
         }
+        public static UserIdAuth Parse(string userId)
+        {
+            return new UserIdAuth(userId);
+        }           
 
-        public static implicit operator string(UserIdAuth password) => password.value;
-        public static implicit operator UserIdAuth(string value) => new UserIdAuth(value);
+        public static implicit operator string(UserIdAuth userAuth0) => userAuth0.UserId;
+        public static implicit operator UserIdAuth(string userId) => new UserIdAuth(userId);
 
     
-        public override string ToString() => $"{value}";
+        public override string ToString() => $"{UserId}";
     }
 }

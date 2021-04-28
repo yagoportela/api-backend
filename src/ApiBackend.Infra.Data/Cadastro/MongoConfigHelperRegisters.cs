@@ -21,6 +21,8 @@ namespace ApiBackend.Infra.Data.Cadastro
             ConventionRegistry.Register("Default conventions", pack, t => true);
 
             BsonSerializer.RegisterSerializer(typeof(Phone), new PhoneSerializer());
+            BsonSerializer.RegisterSerializer(typeof(Password), new PasswordSerializer());
+            BsonSerializer.RegisterSerializer(typeof(UserIdAuth), new UserIdAuthSerializer());
         }
     }
 }
