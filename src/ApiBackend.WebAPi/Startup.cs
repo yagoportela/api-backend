@@ -1,3 +1,4 @@
+using System.Reflection;
 using ApiBackend.Infra.CrossCutting.IoC;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -20,9 +21,8 @@ namespace ApiBackend.WebAPi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(IMediator).GetType().Assembly);
+            services.AddMediatR(typeof(Startup));
             DependencyInjection.Dependences(services);
-
             services.AddControllers();
         }
 
