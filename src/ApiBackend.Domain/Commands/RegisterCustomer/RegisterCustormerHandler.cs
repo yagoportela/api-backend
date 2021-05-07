@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using ApiBackend.Domain.Commands;
 using ApiBackend.Domain.Core.Interfaces.ServicesAuth0;
 using ApiBackend.Helpers.Exceptions;
 using AutoMapper;
@@ -11,16 +10,16 @@ using ApiBackend.Helpers.Dto.ServicesAuth0;
 using ApiBackend.Infra.Data.Interfaces;
 using System.Linq;
 
-namespace ApiBackend.Domain.Handlers
+namespace ApiBackend.Domain.Commands.RegisterCustomer
 {
-    public class RegisterNewCustormerHandler : IRequestHandler<ClientRegisterCommand, bool>
+    public class RegisterCustormerHandler : IRequestHandler<RegisterCustormerRequest, bool>
     {
         private readonly Config _config;
         private readonly IDbContextRegisters _dbContext;
         private readonly IMapper _mapper;
         private readonly IRegisterCustomerAuth0 _registerAuth0;
 
-        public RegisterNewCustormerHandler(Config config,
+        public RegisterCustormerHandler(Config config,
                                            IDbContextRegisters dbCustomer,
                                            IRegisterCustomerAuth0 registerAuth0,
                                            IMapper mapper)
@@ -31,7 +30,7 @@ namespace ApiBackend.Domain.Handlers
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(ClientRegisterCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(RegisterCustormerRequest request, CancellationToken cancellationToken)
         {
             ValidationRequest(request);
             var customer = CustomerModelBody(request);
@@ -46,7 +45,7 @@ namespace ApiBackend.Domain.Handlers
             return true;
         }
 
-        private static void ValidationRequest(ClientRegisterCommand request)
+        private static void ValidationRequest(RegisterCustormerRequest request)
         {
             if (!request.IsValid())
             {
@@ -55,7 +54,7 @@ namespace ApiBackend.Domain.Handlers
             }
         }
 
-        private CustomerAggregate CustomerModelBody(ClientRegisterCommand request)
+        private CustomerAggregate CustomerModelBody(RegisterCustormerRequest request)
         {
             var filterMap = _mapper.Map<CustomerModelCreateDTO>(request);
             var customer = CustomerAggregate.Create(filterMap, _config.Chave);

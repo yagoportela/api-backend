@@ -1,10 +1,9 @@
-using ApiBackend.Domain.Commands;
 using ApiBackend.Domain.Core.Validations;
 using FluentValidation;
 
-namespace ApiBackend.Domain.Validations
+namespace ApiBackend.Domain.Commands.RegisterCustomer
 {
-    public class CustomerValidation: AbstractValidator<ClientRegisterCommand>
+    public class CustomerValidation: AbstractValidator<RegisterCustormerRequest>
     {
         public CustomerValidation()
         {

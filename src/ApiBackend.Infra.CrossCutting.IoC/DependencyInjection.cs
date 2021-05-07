@@ -1,10 +1,7 @@
-using System.Text.RegularExpressions;
 using ApiBackend.Application.Apis.ApiCustomer;
-using ApiBackend.Application.Params;
-using ApiBackend.Domain.Commands;
+using ApiBackend.Domain.Commands.RegisterCustomer;
 using ApiBackend.Application.Interfaces;
 using ApiBackend.Domain.Core.Interfaces.ServicesAuth0;
-using ApiBackend.Domain.Handlers;
 using ApiBackend.Helpers.Dto.Configs;
 using ApiBackend.Infra.Data.Cadastro;
 using ApiBackend.Infra.Data.Interfaces;
@@ -58,7 +55,7 @@ namespace ApiBackend.Infra.CrossCutting.IoC
             builder.AddSingleton<IApplicationCustomersHandler, ApplicationCustomerServices>(); 
         }
         private static void AddDependencyDomainCommands (IServiceCollection builder) { 
-            builder.AddTransient<IRequestHandler<ClientRegisterCommand, bool>, RegisterNewCustormerHandler>(); 
+            builder.AddTransient<IRequestHandler<RegisterCustormerRequest, bool>, RegisterCustormerHandler>(); 
         }
 
         private static void ConfigurationEnvironment (IServiceCollection builder) {   

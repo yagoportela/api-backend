@@ -1,10 +1,9 @@
 using FluentValidation.Results;
 using MediatR;
-using ApiBackend.Domain.Validations;
 
-namespace ApiBackend.Domain.Commands
+namespace ApiBackend.Domain.Commands.RegisterCustomer
 {
-    public class ClientRegisterCommand: IRequest<bool>
+    public class RegisterCustormerRequest: IRequest<bool>
     {
         public string Id {get; set;}
         public string Name {get; set;}

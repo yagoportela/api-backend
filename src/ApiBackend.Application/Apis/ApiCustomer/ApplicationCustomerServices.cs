@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using ApiBackend.Application.Params;
-using ApiBackend.Domain.Commands;
+using ApiBackend.Domain.Commands.RegisterCustomer;
 using ApiBackend.Application.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -32,7 +32,7 @@ namespace ApiBackend.Application.Apis.ApiCustomer
 
         private async Task<IActionResult> Handler(ParamRegisterRequest paramClienteCadastro)
         {
-            var filterMap = _mapper.Map<ClientRegisterCommand>(paramClienteCadastro);
+            var filterMap = _mapper.Map<RegisterCustormerRequest>(paramClienteCadastro);
             await _mediator.Send(filterMap);
             
             return new CreatedAtRouteResult("ObterCliente", filterMap.Id);
