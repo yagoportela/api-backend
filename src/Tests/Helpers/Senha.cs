@@ -30,18 +30,18 @@ namespace Tests.Helpers.Senha
             Assert.Equal(decBase64, "123");
         }
 
-        [Fact]
-        public void ForcaSenha()
-        {
-            var senhaForte = "Nrvfg=";
-            var senhaFraca = "12345678";
+        // [Fact]
+        // public void ForcaSenha()
+        // {
+        //     var senhaForte = "Nrvfg=";
+        //     var senhaFraca = "12345678";
 
-            int forcaSenhaForte = ChecarForcaSenha.GetForcaDaSenha(senhaForte);
-            int forcaSenhaFraca = ChecarForcaSenha.GetForcaDaSenha(senhaFraca);
+        //     int forcaSenhaForte = ChecarForcaSenha.GetForcaDaSenha(senhaForte);
+        //     int forcaSenhaFraca = ChecarForcaSenha.GetForcaDaSenha(senhaFraca);
             
-            Assert.True(forcaSenhaForte >= 50);
-            Assert.True(forcaSenhaFraca < 50);
-        }
+        //     Assert.True(forcaSenhaForte >= 50);
+        //     Assert.True(forcaSenhaFraca < 50);
+        // }
 
     }
 }
