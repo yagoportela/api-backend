@@ -20,9 +20,9 @@ namespace ApiBackend.Domain.Commands.RegisterCustomer
         private readonly IRegisterCustomerAuth0 _registerAuth0;
 
         public RegisterCustormerHandler(Config config,
-                                           IDbContextRegisters dbCustomer,
-                                           IRegisterCustomerAuth0 registerAuth0,
-                                           IMapper mapper)
+                                        IDbContextRegisters dbCustomer,
+                                        IRegisterCustomerAuth0 registerAuth0,
+                                        IMapper mapper)
         {
             _config = config;
             _dbContext = dbCustomer;
@@ -45,7 +45,7 @@ namespace ApiBackend.Domain.Commands.RegisterCustomer
             return true;
         }
 
-        private static void ValidationRequest(RegisterCustormerRequest request)
+        public void ValidationRequest(RegisterCustormerRequest request)
         {
             if (!request.IsValid())
             {

@@ -7,13 +7,13 @@ using Xunit;
 
 namespace Tests.Domain.Core.Validations
 {
-    public class ValidationCPF
+    public class ValidationCPFTest
     {
         
         [Theory]
         [InlineData("123.456.789-09")]
         [InlineData("822.420.106-62")]
-        public void CPF_Is_Valid(string cpf)
+        public void CPF_Is_Valid_Test(string cpf)
         { 
             var person  = new Person { CPF = cpf};
 
@@ -28,7 +28,8 @@ namespace Tests.Domain.Core.Validations
         [InlineData("543.434.321-76")]
         [InlineData("A822.420.106-62")]
         [InlineData("822.420.106-62a")]
-        public void CPF_Is_Invalid(string cpf)
+        [InlineData(null)]
+        public void CPF_Is_Invalid_Test(string cpf)
         { 
             var person  = new Person { CPF = cpf };
 
@@ -40,7 +41,8 @@ namespace Tests.Domain.Core.Validations
 
         [Theory]
         [InlineData("822.420.106-62a")]
-        public void CPF_Is_Invalid_With_Message(string cpf)
+        [InlineData(null)]
+        public void CPF_Is_Invalid_With_Message_Test(string cpf)
         { 
             var person  = new Person { CPF = cpf };
             const string customMessage = "Custom Message";

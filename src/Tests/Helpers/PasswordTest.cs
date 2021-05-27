@@ -5,9 +5,8 @@ using Xunit;
 
 namespace Tests.Helpers.Senha
 {
-    public class Senha
-    {
-        
+    public class PasswordTest
+    {        
         [Fact]
         public void Cript()
         {

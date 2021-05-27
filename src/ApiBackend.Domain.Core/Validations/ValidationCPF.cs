@@ -12,6 +12,9 @@ namespace ApiBackend.Domain.Core.Validations
 
         public override bool IsValid(ValidationContext<T> context, TProperty value)
         {
+            if(value == null)
+                return false;
+                
             if (!Regex.IsMatch(value.ToString(), @"^\d\d\d\.?\d\d\d\.?\d\d\d-?\d\d$"))
                 return false;
 
